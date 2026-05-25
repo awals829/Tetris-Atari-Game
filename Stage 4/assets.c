@@ -1,0 +1,21 @@
+#include "assets.h"
+
+/* Used For Bitmap Printing Functions*/
+unsigned int block_bitmap[16] = {
+    0x0000,
+	0x7FFE,
+    0x7FFE,
+    0x7FFE,
+    0x7FFE,
+    0x7FFE,
+    0x7FFE,
+    0x7FFE,
+    0x7FFE,
+    0x7FFE,
+    0x7FFE,
+    0x7FFE,
+    0x7FFE,
+    0x7FFE,
+    0x7FFE,
+    0x0000
+};

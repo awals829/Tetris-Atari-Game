@@ -1,0 +1,16 @@
+{
+    "files.associations": {
+        "*.rmd": "markdown",
+        "TST_RAST.C": "cpp",
+        "PSG.C": "cpp",
+        "RASTER.C": "cpp",
+        "RASTER1.C": "cpp",
+        "INVADERS.C": "cpp",
+        "font.h": "c",
+        "string.h": "c",
+        "stdio.h": "c",
+        "RASTER copy.C": "cpp",
+        "events.h": "c",
+        "MUSIC.C": "cpp"
+    }
+}

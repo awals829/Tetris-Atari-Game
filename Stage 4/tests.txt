@@ -1,0 +1,336 @@
+
+    /* Test 'L-shape' spawn */
+    initializeTetrominoSpawn(&t, 'L');
+    CLEAR_SCREEN;
+    renderTetromino(&t, UINTPTR base);
+
+    SWEET_STEPPER;
+
+    /* Test 'J-shape' spawn */
+    initializeTetrominoSpawn(&t, 'J');
+    CLEAR_SCREEN;
+    renderTetromino(&t, UINTPTR base);
+
+    SWEET_STEPPER;
+
+    /* Test 'S-shape' spawn */
+    initializeTetrominoSpawn(&t, 'S');
+    CLEAR_SCREEN;
+    renderTetromino(&t, UINTPTR base);
+
+    SWEET_STEPPER;
+
+    /* Test 'Z-shape' spawn */
+    initializeTetrominoSpawn(&t, 'Z');
+    CLEAR_SCREEN;
+    renderTetromino(&t, UINTPTR base);
+
+    SWEET_STEPPER;
+
+    /* Test 'I-shape' spawn */
+    initializeTetrominoSpawn(&t, 'I');
+    CLEAR_SCREEN;
+    renderTetromino(&t, UINTPTR base);
+
+    SWEET_STEPPER;
+
+    /* Test 'O-shape' spawn */
+    initializeTetrominoSpawn(&t, 'O');
+    CLEAR_SCREEN;
+    renderTetromino(&t, UINTPTR base);
+
+    SWEET_STEPPER;
+
+
+    /* ====================================== */
+    /* ======= RENDER PLAY AREA TESTS  ====== */
+    /* ====================================== */
+
+    /* Renders correctly to play area values */
+    initPlayArea(&p);
+    CLEAR_SCREEN;
+    renderPlayArea(&p, UCHARPTR base);
+
+    SWEET_STEPPER;
+
+    /* Tests for render assorted blocks (should be empty after initialization) */
+    /* Incrementally add each block now to test renderBlocks */
+    
+    renderBlocks(&p, UINTPTR base);
+
+    SWEET_STEPPER;
+
+    p.arena[0][0].is_occupied = 1;
+    renderBlocks(&p, UINTPTR base);
+
+    SWEET_STEPPER;
+
+    p.arena[1][1].is_occupied = 1;
+    renderBlocks(&p, UINTPTR base);
+
+    SWEET_STEPPER;
+
+    p.arena[2][2].is_occupied = 1;
+    renderBlocks(&p, UINTPTR base);
+
+    SWEET_STEPPER;
+
+    p.arena[3][3].is_occupied = 1;
+    renderBlocks(&p, UINTPTR base);
+
+    SWEET_STEPPER;
+
+    p.arena[4][4].is_occupied = 1;
+    renderBlocks(&p, UINTPTR base);
+
+    SWEET_STEPPER;
+
+    p.arena[5][5].is_occupied = 1;
+    renderBlocks(&p, UINTPTR base);
+
+    /* Incrementally remove each block now to test renderBlocks */
+
+    SWEET_STEPPER;
+
+    p.arena[0][0].is_occupied = 0;
+    renderBlocks(&p, UINTPTR base);
+
+    SWEET_STEPPER;
+
+    p.arena[1][1].is_occupied = 0;
+    renderBlocks(&p, UINTPTR base);
+
+    SWEET_STEPPER;
+
+    p.arena[2][2].is_occupied = 0;
+    renderBlocks(&p, UINTPTR base);
+
+    SWEET_STEPPER;
+
+    p.arena[3][3].is_occupied = 0;
+    renderBlocks(&p, UINTPTR base);
+
+    SWEET_STEPPER;
+
+    p.arena[4][4].is_occupied = 0;
+    renderBlocks(&p, UINTPTR base);
+
+    SWEET_STEPPER;
+
+    p.arena[5][5].is_occupied = 0;
+    renderBlocks(&p, UINTPTR base);
+
+    /* Test renderBlocks doesn't render or clear Tetrominos */
+    SWEET_STEPPER;
+
+    initializeTetrominoSpawn(&t, 'J');
+    copyTetrominotoArena(&t, &p);
+    p.arena[0][0].is_occupied = 1;
+    p.arena[1][1].is_occupied = 1;
+    p.arena[2][2].is_occupied = 1;
+    p.arena[3][3].is_occupied = 1;
+    p.arena[4][4].is_occupied = 1;
+    p.arena[5][5].is_occupied = 1;
+    renderBlocks(&p, UINTPTR base);
+
+    SWEET_STEPPER;
+
+    renderTetromino(&t, UINTPTR base);
+    
+    SWEET_STEPPER;
+
+    clearTetrominotoArena(&t, &p);
+    /* Tetromino should no longer be visible as occupation is now reset */
+    renderBlocks(&p, UINTPTR base);
+
+    SWEET_STEPPER;
+
+    /* Remaining occupied blocks also reset should clear */
+    p.arena[0][0].is_occupied = 0;
+    p.arena[1][1].is_occupied = 0;
+    p.arena[2][2].is_occupied = 0;
+    p.arena[3][3].is_occupied = 0;
+    p.arena[4][4].is_occupied = 0;
+    p.arena[5][5].is_occupied = 0;
+    renderBlocks(&p, UINTPTR base);
+
+    SWEET_STEPPER;
+
+
+    /* Test changing play area to different sizes and starting coords to ensure renderer renders variations */
+    p.height = 50;
+    p.width = 100;
+    CLEAR_SCREEN;
+    renderPlayArea(&p, UCHARPTR base);
+
+    SWEET_STEPPER;
+
+    /* Test changing play area to different sizes and starting coords to ensure renderer renders variations */
+    p.screenY = 50;
+    p.height = 100;
+    CLEAR_SCREEN;
+    renderPlayArea(&p, UCHARPTR base);
+
+    SWEET_STEPPER;
+
+    /* Return to original format */
+    initPlayArea(&p);
+    CLEAR_SCREEN;
+    renderPlayArea(&p, UCHARPTR base);
+
+    SWEET_STEPPER;
+
+
+    /* ========================================== */
+    /* ======= RENDER SCORE DISPLAY TESTS  ====== */
+    /* ========================================== */
+
+    initScoreDisplay(&sd);
+    initTopScoreLabel(&tsl);
+    initTopScoreString(&tss);
+    initCurrentScoreLabel(&csl);
+    initCurrentScoreString(&css);
+    initLevelLabel(&lvlL);
+    initLevelString(&lvlS);
+
+    CLEAR_SCREEN;
+
+    renderScoreDisplay(&sd, UCHARPTR base);
+    renderScoreDisplayValues(&tsl, &tss, &csl, &css, &lvlL, &lvlS, UCHARPTR base);
+
+    SWEET_STEPPER;
+
+    sd.top_score = 9;
+    sd.current_score = 9;
+    scoreToString(sd.top_score, tss.top_score_num_string);
+    scoreToString(sd.current_score, css.current_score_num_string);
+    renderScoreDisplayValues(&tsl, &tss, &csl, &css, &lvlL, &lvlS, UCHARPTR base);
+
+    SWEET_STEPPER;
+
+    sd.top_score = 99;
+    sd.current_score = 99;
+    scoreToString(sd.top_score, tss.top_score_num_string);
+    scoreToString(sd.current_score, css.current_score_num_string);
+    renderScoreDisplayValues(&tsl, &tss, &csl, &css, &lvlL, &lvlS, UCHARPTR base);
+
+    SWEET_STEPPER;
+
+    sd.top_score = 999;
+    sd.current_score = 999;
+    scoreToString(sd.top_score, tss.top_score_num_string);
+    scoreToString(sd.current_score, css.current_score_num_string);
+    renderScoreDisplayValues(&tsl, &tss, &csl, &css, &lvlL, &lvlS, UCHARPTR base);
+
+    SWEET_STEPPER;
+
+    sd.top_score = 9999;
+    sd.current_score = 9999;
+    scoreToString(sd.top_score, tss.top_score_num_string);
+    scoreToString(sd.current_score, css.current_score_num_string);
+    renderScoreDisplayValues(&tsl, &tss, &csl, &css, &lvlL, &lvlS, UCHARPTR base);
+
+    SWEET_STEPPER;
+
+    sd.top_score = 99999;
+    sd.current_score = 99999;
+    scoreToString(sd.top_score, tss.top_score_num_string);
+    scoreToString(sd.current_score, css.current_score_num_string);
+    renderScoreDisplayValues(&tsl, &tss, &csl, &css, &lvlL, &lvlS, UCHARPTR base);
+
+    SWEET_STEPPER;
+
+    sd.top_score = 999999;
+    sd.current_score = 999999;
+    scoreToString(sd.top_score, tss.top_score_num_string);
+    scoreToString(sd.current_score, css.current_score_num_string);
+    renderScoreDisplayValues(&tsl, &tss, &csl, &css, &lvlL, &lvlS, UCHARPTR base);
+
+    SWEET_STEPPER;
+
+    sd.top_score = 9999999;
+    sd.current_score = 9999999;
+    scoreToString(sd.top_score, tss.top_score_num_string);
+    scoreToString(sd.current_score, css.current_score_num_string);
+    renderScoreDisplayValues(&tsl, &tss, &csl, &css, &lvlL, &lvlS, UCHARPTR base);
+
+
+
+    /********* Level num string tests *********/
+
+    SWEET_STEPPER;
+
+    renderScoreDisplay(&sd, UCHARPTR base);
+    sd.level = 1;
+    levelToString(sd.level, lvlS.level_num_string);
+    renderScoreDisplayValues(&tsl, &tss, &csl, &css, &lvlL, &lvlS, UCHARPTR base);
+
+    SWEET_STEPPER;
+
+    renderScoreDisplay(&sd, UCHARPTR base);
+    sd.level = 2;
+    levelToString(sd.level, lvlS.level_num_string);
+    renderScoreDisplayValues(&tsl, &tss, &csl, &css, &lvlL, &lvlS, UCHARPTR base);
+
+    SWEET_STEPPER;
+
+    renderScoreDisplay(&sd, UCHARPTR base);
+    sd.level = 3;
+    levelToString(sd.level, lvlS.level_num_string);
+    renderScoreDisplayValues(&tsl, &tss, &csl, &css, &lvlL, &lvlS, UCHARPTR base);
+
+    SWEET_STEPPER;
+
+    renderScoreDisplay(&sd, UCHARPTR base);
+    sd.level = 4;
+    levelToString(sd.level, lvlS.level_num_string);
+    renderScoreDisplayValues(&tsl, &tss, &csl, &css, &lvlL, &lvlS, UCHARPTR base);
+
+    SWEET_STEPPER;
+
+    renderScoreDisplay(&sd, UCHARPTR base);
+    sd.level = 5;
+    levelToString(sd.level, lvlS.level_num_string);
+    renderScoreDisplayValues(&tsl, &tss, &csl, &css, &lvlL, &lvlS, UCHARPTR base);
+
+    SWEET_STEPPER;
+
+    renderScoreDisplay(&sd, UCHARPTR base);
+    sd.level = 6;
+    levelToString(sd.level, lvlS.level_num_string);
+    renderScoreDisplayValues(&tsl, &tss, &csl, &css, &lvlL, &lvlS, UCHARPTR base);
+
+    SWEET_STEPPER;
+
+    renderScoreDisplay(&sd, UCHARPTR base);
+    sd.level = 7;
+    levelToString(sd.level, lvlS.level_num_string);
+    renderScoreDisplayValues(&tsl, &tss, &csl, &css, &lvlL, &lvlS, UCHARPTR base);
+
+    SWEET_STEPPER;
+
+    renderScoreDisplay(&sd, UCHARPTR base);
+    sd.level = 8;
+    levelToString(sd.level, lvlS.level_num_string);
+    renderScoreDisplayValues(&tsl, &tss, &csl, &css, &lvlL, &lvlS, UCHARPTR base);
+
+    SWEET_STEPPER;
+
+    renderScoreDisplay(&sd, UCHARPTR base);
+    sd.level = 9;
+    levelToString(sd.level, lvlS.level_num_string);
+    renderScoreDisplayValues(&tsl, &tss, &csl, &css, &lvlL, &lvlS, UCHARPTR base);
+
+    SWEET_STEPPER;
+
+    renderScoreDisplay(&sd, UCHARPTR base);
+    sd.level = 10;
+    levelToString(sd.level, lvlS.level_num_string);
+    renderScoreDisplayValues(&tsl, &tss, &csl, &css, &lvlL, &lvlS, UCHARPTR base);
+
+    SWEET_STEPPER;
+
+    renderScoreDisplay(&sd, UCHARPTR base);
+    sd.level = 11;
+    levelToString(sd.level, lvlS.level_num_string);
+    renderScoreDisplayValues(&tsl, &tss, &csl, &css, &lvlL, &lvlS, UCHARPTR base);

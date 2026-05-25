@@ -1,0 +1,25 @@
+#ifndef ASSETS_H
+#define ASSETS_H
+
+/* Used For Tetromino bitmap printing functions */
+unsigned int block_bitmap[16] =
+{
+    0x0000,
+	0x7FFE,
+    0x7FFE,
+    0x7FFE,
+    0x7FFE,
+    0x7FFE,
+    0x7FFE,
+    0x7FFE,
+    0x7FFE,
+    0x7FFE,
+    0x7FFE,
+    0x7FFE,
+    0x7FFE,
+    0x7FFE,
+    0x7FFE,
+    0x0000
+};
+
+#endif

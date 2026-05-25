@@ -1,0 +1,18 @@
+OBJFILES := tst_rast.o raster.o font.o clear_qk.o
+EXE := tst_rast
+
+
+$(EXE): $(OBJFILES)
+	cc68x -g $(OBJFILES) -o $(EXE)
+
+$(EXE).o: $(EXE).c
+	cc68x -g -c tst_rast.c
+
+raster.o: raster.c raster.h
+	cc68x -g -c raster.c
+
+font.o: font.c font.h
+	cc68x -g -c font.c
+
+clear_qk.o: clear_qk.s
+	gen -D -L2 clear_qk.s

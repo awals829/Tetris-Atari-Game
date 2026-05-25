@@ -1,0 +1,11 @@
+tst_env: tst_env.o model.o events.o
+	cc68x $^ -o tst_env
+
+tst_env.o: tst_env.c
+	cc68x -c $<
+
+model.o: model.c model.h
+	cc68x -c $<
+
+events.o: events.c events.h
+	cc68x -c $<
