@@ -5,34 +5,42 @@
 
 # Game Play Details for Core 1-Player Version
 
+## Controls
+  A               Move piece left
+  D               Move piece right
+  S               Descend faster (hold to fall faster)
+  X               Rotate clockwise
+  Z               Rotate counterclockwise
+  ESC             Quit
+
 ## Objectives and Rules
 
-   ### Objective:
+  ### Objective:
   Players must shift and/or rotate Tetromino pieces to strategically position them in order to complete lines and score points.
   Completing a horizontal line, that is a line with no empty spaces, clears it and scores points for the player.
   Achieve the highest score possible before the game is over.
   There is no win condition, the game continues to run until the player either quits, or the game over condition is triggered.
   
-   ### Game Over Condition:
+  ### Game Over Condition:
   If any placed Tetromino reaches the top of the gameplay area, the game ends for the player.
   
-   ### Tetromino Shapes:
+  ### Tetromino Shapes:
   Tetromino pieces consist of four blocks, forming various shapes.
   There are a total of 7 different Tetromino shapes.
   
-   ### Movement and Rotation:
+  ### Movement and Rotation:
   Tetromino pieces can shift left or right horizontally
   Pieces can also rotate in 90-degree increments.
   Movement and rotation are allowed ONLY while the piece is still in play and not placed.
   Rotations will not occur if the Tetromino cannot rotate to that position due to screen bounds or placed pieces interfering with the final rotation shape.
   Movement is discrete in the sense that it is not fluid pixel by pixel, instead it is block by block increments.
   
-   ### Spawning and Placement:
+  ### Spawning and Placement:
   The game starts with a Tetromino piece spawning at the top center of the play area.
   Pieces fall from the top in block-sized increments until placed, after which a new random piece spawns at the same location (For example, if a block is 16x16 pixels, then the falling       increment is 16 pixels).
   A piece is placed when it collides with either the bottom of the gameplay, or another piece that is already placed.
   
-   ### Scoring and Levels:
+  ### Scoring and Levels:
   Starting level is 1, max level is 10.
   Base points for clearing a line are 40.
   Levels increment every 10 cleared lines. These 10 lines do not have to be cleared all at once and are cumulative.
@@ -40,7 +48,7 @@
   The rate at which the Tetromino piece falls increases when the level increases.
   Progressing to the next level does not interrupt gameplay, rather, this change is seamless and all pieces currently in play remain in play.
   
-   ### Gameplay Mechanics:
+  ### Gameplay Mechanics:
   The gameplay area is 10 blocks wide and 20 blocks tall.
   Basic movement is limited to left and right motions, while rotations occur in 90-degree increments.
   The player can implement a ‘soft drop’ which increases the speed the Tetromino piece falls while a specified button is pressed.
@@ -55,15 +63,16 @@
 ## Play Area
 
   The play area consists of two main components, the “active” play area and the “passive” play area. The active play area contains actively placed pieces, and the  passive play area awaits player input on the currently running piece. This play area is confined by two side edges (Left and Right), a top edge and a bottom edge. The entire gameplay area measures 10 blocks wide and 20 blocks high (160 x 320 in pixels), but the size of the active and passive areas is determined by the actions of the player via the currently placed Tetromino stack height. The left, right and bottom edges serve no functional purpose other than to contain the play area, however the top edge marks the limit to the active play area. The passive play area represents the space available to the player to shift and adjust a falling block, whereas the active play area represents the area taken by previously placed blocks. The size of the active play area is the width of the total play area (160 pixels) times the distance in pixels between the bottom edge and the index of the topmost block of the highest placed Tetromino. The size of the passive play area is the width of the total play area (160 pixels) times the height of the total play area (320 pixels) minus the height of the active play area.
-A collision of a block with the top edge of the active play area can result in two different outcomes; either 1 or more rows are completed and “cleared”, increasing the score by 40 points (level modifier dependent) per row cleared and decreasing the height of the active play area by 16 pixels per row cleared, or no rows are completed and the active play area is increased by the height in pixels of the collided block. In the event of a collision of the active play area and the top edge of the play area, the game is lost and will terminate. When the game ends, a message indicating the players final score and the lifetime top score will be displayed.
+  
+  A collision of a block with the top edge of the active play area can result in two different outcomes; either 1 or more rows are completed and “cleared”, increasing the score by 40 points (level modifier dependent) per row cleared and decreasing the height of the active play area by 16 pixels per row cleared, or no rows are completed and the active play area is increased by the height in pixels of the collided block. In the event of a collision of the active play area and the top edge of the play area, the game is lost and will terminate. When the game ends, a message indicating the players final score and the lifetime top score will be displayed.
 
 
 ## Hypothetical Game Session
 
-  The game starts off with a splash screen, and the options 1-Player, 2-Player, and Quit are displayed. A selection is made on ‘1-Player’ and the game Tetris loads to the screen for a 1-Player game. Level 1 begins, the top score loads the last top score achieved (let’s say 5000), and background music starts to play. The first block, an ‘O-Piece' spawns into view at the top-centre of the passive gameplay area screen, then the block begins to slowly descend downwards in block by block increments every 2 seconds. The player presses the ‘Left Arrow Key’ multiple times, prompting a block interaction ‘beep’ sound to play with each click; Additionally, this shifts the ‘O-Piece' in 1 block increments to the left with each key press to the left-most edge of the play area screen. The player then presses and holds the ‘Soft Drop Key’ until the piece makes contact with the bottom of the screen with a ‘thud’ sound, placing the piece in that position at the bottom left corner of the play area. 
+  The game starts off with a splash screen, and the options 1-Player, 2-Player, and Quit are displayed. A selection is made on ‘1-Player’ and the game Tetris loads to the screen for a 1-Player game. Level 1 begins, the top score loads the last top score achieved (let’s say 5000), and background music starts to play. The first block, an ‘O-Piece' spawns into view at the top-centre of the passive gameplay area screen, then the block begins to slowly descend downwards in block by block increments every 2 seconds. The player presses the ‘A Key’ multiple times, prompting a block interaction ‘beep’ sound to play with each click; Additionally, this shifts the ‘O-Piece' in 1 block increments to the left with each key press to the left-most edge of the play area screen. The player then presses and holds the ‘D Key’ until the piece makes contact with the bottom of the screen with a ‘thud’ sound, placing the piece in that position at the bottom left corner of the play area.
 
-  The next block generates at the same spawn location as the first ‘O-Piece’, but instead it is now the ‘L-Piece’. The player then rotates the piece clockwise multiple times with each ‘X Key’ press so that the longest side of the Tetromino shape is on the bottom. They then shift this piece closer to the now actively placed ‘O-Piece’ and place the ‘L-Piece’ next to it. Since the ‘Game Over’ condition has not been met, gameplay continues with further single-block spawns and player placements until the player places a piece in such a way that a horizontal line is filled in the active play area. A ‘chime’ sound plays, and the single line the player completed is cleared, the player is awarded 40 points (for the level 1 gameplay modifier). 
-Any “floating” rows or pieces that may have been seated on the now cleared row line fall down towards the newly made space. The player, via shifting piece movement and rotations, clears a total of 10 lines cumulatively and the level increments by one. All currently placed pieces remain the same however, and the newly spawned Tetromino blocks begin to descend at a slightly faster pace. Gameplay continues the same as the level before, with Tetromino pieces generating at the top-centre spawn area again. The player now successfully lines up 2 rows that can potentially be completed with one piece placement if given a piece that fits. An ‘I-Piece’ spawns and the player places their piece to complete 2 horizontal lines at once. Both lines are cleared, respective points are awarded, and any “floating” rows fall. 
+  The next block generates at the same spawn location as the first ‘O-Piece’, but instead it is now the ‘L-Piece’. The player then rotates the piece clockwise multiple times with each ‘X Key’ press so that the longest side of the Tetromino shape is on the bottom. They then shift this piece closer to the now actively placed ‘O-Piece’ and place the ‘L-Piece’ next to it. Since the ‘Game Over’ condition has not been met, gameplay continues with further single-block spawns and player placements until the player places a piece in such a way that a horizontal line is filled in the active play area. A ‘chime’ sound plays, and the single line the player completed is cleared, the player is awarded 40 points (for the level 1 gameplay modifier).
+  Any “floating” rows or pieces that may have been seated on the now cleared row line fall down towards the newly made space. The player, via shifting piece movement and rotations, clears a total of 10 lines cumulatively and the level increments by one. All currently placed pieces remain the same however, and the newly spawned Tetromino blocks begin to descend at a slightly faster pace. Gameplay continues the same as the level before, with Tetromino pieces generating at the top-centre spawn area again. The player now successfully lines up 2 rows that can potentially be completed with one piece placement if given a piece that fits. An ‘I-Piece’ spawns and the player places their piece to complete 2 horizontal lines at once. Both lines are cleared, respective points are awarded, and any “floating” rows fall.
 
   The game continues for the player until one of their actively placed pieces touch the top of the play area screen. This occurs for our player on level 6, with a score of 6960, the top score is updated to this value. The game returns to the main menu, and the player can choose to play again or quit the game, they choose the ‘Quit’ option and the game closes.
 
